@@ -76,7 +76,7 @@ export class Korolev {
     window.addEventListener('popstate', this.historyHandler);
     window.addEventListener('resize', this.windowHandler);
   }
-  
+
   destroy() {
     // Remove root listeners
     this.rootListeners.forEach((o) => this.root.removeEventListener(o.type, o.listener));
@@ -84,7 +84,7 @@ export class Korolev {
     window.removeEventListener('popstate', this.historyHandler);
     window.removeEventListener('resize', this.windowHandler);
   }
-  
+
   /** @param {number} n */
   setRenderNum(n) {
     // Remove obsolete event data
@@ -143,7 +143,7 @@ export class Korolev {
       }
     }
   }
-  
+
    /**
     * @param {string} id
     * @param {string} childId
@@ -250,6 +250,13 @@ export class Korolev {
     */
   setAttr(id, xmlNs, name, value, isProperty) {
     var element = this.els[id];
+    var isFocused = (document.activeElement === element);
+    // Do not update the value of a focused text input as the user may be typing a value into it
+    if (isFocused) {
+      var isInputText = element instanceof HTMLInputElement && element.type == 'text';
+      if (isInputText)
+         return;
+    }
     if (isProperty) element[name] = value;
     else if (xmlNs === 0) {
       element.setAttribute(name, value);
@@ -358,7 +365,7 @@ export class Korolev {
     this.callback(
       CallbackType.EVALJS_RESPONSE,
       `${descriptor}:${status}:${result}`
-    );	    
+    );
   }
 
   extractEventData(descriptor, renderNum) {
