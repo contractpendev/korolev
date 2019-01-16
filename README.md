@@ -1,3 +1,17 @@
+# Build notes
+
+```
+Ubuntu
+https://www.scala-lang.org/files/archive/scala-2.12.3-1.deb
+
+~/h/p/korolev> java -version
+openjdk version "1.8.0_191"
+OpenJDK Runtime Environment (build 1.8.0_191-8u191-b12-0ubuntu0.18.04.1-b12)
+OpenJDK 64-Bit Server VM (build 25.191-b12, mixed mode)
+
+sbt publishLocal
+```
+
 # Korolev
 
 <img src="https://fomkin.org/korolev/korolev-face-margin.svg" align="right" width="260" />
